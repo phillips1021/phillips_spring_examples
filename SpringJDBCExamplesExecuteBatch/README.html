@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>An Example Of Using Spring JDBC Execute Batch To Insert Multiple Rows Into A Database Table</h3>
+
+<h3>Introduction</h3>
+<p>I recently needed to read several thousand objects from an XML file, create a collection of those objects, and then insert each object
+in the collection into a database table.  Since my application uses Spring JDBC to interact with the database, I researched how to use
+the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jdbc/core/simple/SimpleJdbcInsert.html" target="_blank">SimpleJDBCInsert class method executeBatch</a>.
+The <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/jdbc.html#jdbc-simple-jdbc-insert-1">Spring online documentation for SimpleJDBCInsert</a>
+does not have a good example of using this executeBatch, so I wrote this article to provide one.</p>
+
+<h3>SimpleJDBCInsert</h3> 
+<p>Class <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jdbc/core/simple/SimpleJdbcInsert.html">SimpleJDBCInsert</a> provides handy methods to easily insert records into a table using the meta data provided by the JDBC driver. 
+I'd previously used this class when inserting a single Object's state into the database table.  For this project I needed to insert many Objects into 
+the database table.</p>
+
+<h3>Method executeBatch</h3>
+<p>The SimpleJDBCInsert class has a 
+<a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jdbc/core/simple/SimpleJdbcInsert.html" target="_blank">executeBatch</a>
+method.  This method is overloaded, with one version taking a parameter of type Map<String,Object>[] and the other version taking a parameter 
+of type SqlParameterSource [].  The example application shows how to use the executeBatch version that takes a parameter of
+type SqlParameterSource.</p>
+
+<h3>Interface SqlParameterSource</h3>
+<p>Type 
+<a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jdbc/core/namedparam/SqlParameterSource.html">SqlParameterSource</a> 
+is an interface implemented by BeanPropertySqlParameterSource and MapSqlParameterSource.  If the Object you want to insert into the table has instance fields
+that match the table column names then you can use the BeanPropertySqlParameterSource to tell the executeBatch method which instance field values
+to use for which table columns.  In the example application the Person class has a personFirstName instance field which matches the table's 
+personFirstName column.  So executeBatch will use the value from that instance field when inserting the Object's 
+state into the table.</p>
+<p>The MapSqlParameterSource is used when you need to map the Object's instance fields to the table column names.  For example, if the Person object
+had an instance field of firstName and the table column name was personFirstName, then I'd need to map the instance field firstName to the table column personFirstName.
+</p>
+
+<h3>Example Application</h3>
+<p>You can download the example application.  It was created using Eclipse 3.6 and the m2 Maven Eclipse plugin.  It is a standard Maven 
+application.  After downloading and unzipping the file open a command window and navigate to the unzipped folder.  In that folder is the pom.xml file.  
+You should be able to run mvn test and all tests should pass.  You should see the log output in the JVM console.</p>
+
+<p>The example application uses an embedded HSQL database when running the test.  If you're not familiar with using Spring 3's support for creating
+an embedded database, you may want to <a href="http://www.brucephillips.name/blog/index.cfm/2009/11/3/Using-Spring-30-To-Create-An-Embedded-InMemory-Database-In-Your-Java-Application">read this article</a>.</p>
+
+<p>In the example application is PersonDaoImpl class which demonstrates how to use the executeBatch method that takes a SqlParameterSource array 
+as an argument.  In PersonDaoImpl is method saveAllPersonsMap which uses a MapSqlParameterSource when calling executeBatch and method saveAllPersonsBean which uses
+a BeanPropertySqlParameterSource when calling executeBatch.  Since the Person class's instance fields match the table column names, the example can use the BeanPropertySqlParameterSource.</p>
+
+<h3>Summary</h3>
+<p>The SimpleJDBCInsert class's executeBatch method provides a handy way to insert multiple rows into a database table.  Be sure to consult the online 
+<a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/">Spring 3.0 documentation</a> and the
+ <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/">Spring 3.0 API</a> for 
+more information.</p>
+
+
+
+</body>
+</html>
