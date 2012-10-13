@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h3>Introduction</h3>
+<p>One of the new features in Spring 3.1 is cache abstraction that allows developers to easily cache method results.
+With the release of Spring 3.1.0 milestone 1, developers can try this new feature out.  This blog article provides
+a simple Maven project that demonstrates how to use the new cache annotations.</p>
+
+<h3>Why Cache?</h3>
+<p>Some data access methods or business methods return the same object or collection of objects given the same values
+for method parameters.  So executing the method 20 times for the same method parameter values is wasteful.  For a 
+method that executes a long-running process caching the method's result can be a useful time saver. 
+Most object relational frameworks provide support to cache results. </p>
+
+<h3>Spring Cache Support</h3> 
+<p>In Spring 3.1, developers can use new cache annotations provided by the Spring framework to cache method results.  
+These cache annotations work similar to how Spring provides transaction support.  You annotate the method whose result 
+you want to cache with the @Cacheable annotation.  If you want to remove all or some cache entries when a given method
+is executed, you can annotate that method with @CacheEvict.</p>
+
+<h3>Example Application</h3>
+<p>You can <a href="http://www.brucephillips.name/spring/springcacheexample.zip">download a zipped archive of 
+a simple Maven project</a>
+ that demonstrates using the @Cacheable and @CacheEvict annotations.  </p>
+ 
+ <p>After downloading the example application, you can import it into Eclipse. If you don't use Eclipse, 
+ you can unzip the download and import the Maven project into any Maven aware Java IDE.</p>
+
+<h3>Spring @Cacheable And @CacheEvict</h3>
+<p>Examine the PersonDaoStub class, getPerson method:</p>
+
+<code>
+
+	@Cacheable("persons")
+	public Person getPerson(Long personId) {
+
+	...
+	
+	}
+	
+</code>
+
+<p>The method getPerson is annotated with @Cacheable("persons").  This annotation will cause Spring to create a 
+cache of Person objects returned by this method (the cache will be named persons).  The first time the method is
+called with a value of 123L, the method will execute and the Person object returned will be added to the persons
+cache.  The next time the getPerson method is called with a value of 123L, the Person object in the cache with 
+that personId value will be returned and the method will not actually execute.</p>
+
+<p>Examine the PersonDaoStub class, loadPeople method:</p>
+
+<code>
+
+    @CacheEvict(value="persons", allEntries=true)
+	public void loadPeople() {
+	
+	...
+	
+	}
+
+</code>
+
+<p>The loadPeople method is annotated with the @CacheEvict annotation.  When this method is called, all the 
+Person objects stored in the persons cache will be removed.  The next time method getPerson is called it will
+execute completely.</p>
+
+<h3>Testing Spring Cache Implementation</h3>
+<p>In src/test/java is a JUnit test for method getPerson that demonstrates that getPerson only executes once no 
+matter how many times it is called.
+To run the application's JUnit test open a terminal (command) window and navigate to the project's root folder. 
+Then at the command line run mvn -e clean test. The test calls getPerson 20 times, then calls loadPeople, 
+and then calls getPerson 20 more times.  In the console output you should see these log messages:</p>
+
+<code>
+
+Running name.brucephillips.springcacheexample.dao.PersonDaoTest
+Method getPerson has executed 1 time(s).
+Method loadPeople has executed.
+ Method getPerson has executed 2 time(s).
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.079 sec
+
+</code>
+
+<p>If you want to see what happens when the cache annotations are not present, 
+comment out the @Cacheable and @CacheEvict annotations in class PersonDaoStub
+and save the class source file.
+Then rerun the test (mvn -e clean test).</p>
+
+<h3>Cache Storage Providers</h3>
+<p>Spring provides support for two cache storage providers: ConcurrentHashMap and Ehcache.  The example's Spring 
+configuration file for the test (src/test/resources/name/brucephillips/springcacheexample/dao/PersonDaoTest-context.xml)
+ shows 
+how to setup each of these.</p>
+<p> Using ConcurrentHashMap is simpler to setup, but using Ehcache is more powerful.  Note that
+reference 1's example code for setting up the Ehcache manager has a typo:  the property for referencing the 
+cache-manager should be cache-manager-ref and not cache-manager.  Thanks to James Carr's blog article (reference 2) 
+I was able to figure that out and fix an error I was getting when using cache-manager as the property name.</p>
+
+<h3>Where To Learn More</h3>
+<p>Consult the references below to learn more about using Spring 3.1's cache implementation.</p>
+
+<h3>Summary</h3>
+<p>Spring's cache annotations provide developers a useful tool to use when needing to cache method results.  These 
+new annotations will be especially handy when not using an object relational framework or when needing to cache 
+the result from a long-running business method.</p>
+
+<h3>References</h3>
+
+<ol>
+	<li><a href="http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html" target="_blank">Spring Framework Reference, Section 27 Cache Abstraction</a></li>
+	<li>James Carr Blog Article, <a href="http://blog.james-carr.org/2011/02/12/cache-abstraction-in-spring-3-1-0-m1/" 
+	target="_blank">Cache Abstraction in Spring 3.1.0.M1</a></li>
+	<li><a href="http://blog.springsource.com/2011/02/23/spring-3-1-m1-caching/" target="_blank">Spring 3.1 M1: Cache Abstraction</a></li>
+</ol>
+
+</body>
+</html>
