@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="springjpaexample" extends="struts-default">
+
+		<interceptors>
+			<interceptor-stack name="appDefaultStack">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="appDefaultStack" />
+
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+		<action name="personFinder"
+			class="edu.ku.it.si.springjpaexample.action.PersonFinder" method="execute">
+			<result name="success">/personinfo.jsp</result>
+		</action>
+
+		<action name="allPersonsFinder"
+			class="edu.ku.it.si.springjpaexample.action.AllPersonsFinder" method="execute">
+
+			<result name="success">/personsinfo.jsp</result>
+
+		</action>
+
+		<action name="*PersonUpdate"
+			class="edu.ku.it.si.springjpaexample.action.PersonUpdater" method="{1}">
+
+			<result name="input">/inputpersonupdate.jsp</result>
+			<result name="success">/personupdated.jsp</result>
+
+		</action>
+
+		<action name="personDelete"
+			class="edu.ku.it.si.springjpaexample.action.PersonDeleter" method="execute">
+
+			<result name="success">/persondeleted.jsp</result>
+
+		</action>
+
+		<action name="*PersonSave" class="edu.ku.it.si.springjpaexample.action.PersonSaver"
+			method="{1}">
+
+			<result name="input">/inputpersonsave.jsp</result>
+			<result name="success">/personsaved.jsp</result>
+
+		</action>
+
+	</package>
+
+</struts>
