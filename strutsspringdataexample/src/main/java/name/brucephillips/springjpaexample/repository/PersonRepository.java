@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Uses Spring Data JPA library to define a PersonRepistory
- * interface that Spring will create a Bean object
+ * interface that Spring will use to create a Bean object
  * with CRUD methods for a Person.
  * @author brucephillips
  *
