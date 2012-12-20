@@ -11,6 +11,16 @@ test the Spring MVC controller class HomeController.java.
 
 The new code is in src/test/resources and src/test/java.
 
+To run the tests use mvn -e clean test
+
+To run the web application in Tomcat use mvn -e clean tomcat:run.  
+
+Once Tomcat has started up you can use these URLs:
+
+   http://localhost:9090/ 
+   http://localhost:9090/compare?input1=Bruce&input2=Andrew
+   
+
 References:
 
 Spring MVC Test Framework,
