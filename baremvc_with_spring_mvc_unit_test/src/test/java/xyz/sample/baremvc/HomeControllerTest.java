@@ -31,10 +31,9 @@ public class HomeControllerTest {
     
     @Test
     public void testDefault() throws Exception {
-    	
-    	
+
     	mockMvc.perform( get("/")).andExpect(status().isOk() ).andExpect(forwardedUrl("WEB-INF/views/home.jsp"));
-	
+
     }
     
 
@@ -43,10 +42,7 @@ public class HomeControllerTest {
 		
 		mockMvc.perform( get("/compare?input1=Bruce&input2=Andrew")).andExpect(status().isOk())
 		  .andExpect(model().attributeExists("output") ).andExpect(forwardedUrl("WEB-INF/views/compareResult.jsp"));
-		
 
-	}
-	
-
+	}	
 
 }
