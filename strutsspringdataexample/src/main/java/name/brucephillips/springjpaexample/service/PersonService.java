@@ -1,6 +1,3 @@
-/**
- * 
- */
 package name.brucephillips.springjpaexample.service;
 
 import java.util.List;
