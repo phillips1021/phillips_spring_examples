@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/jdbc
+            http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
+
+ 
+ 
+	<!-- Creates a data source that can provide a connection to in-memory embedded database populated 
+	with test data
+	see: http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/ch12s08.html   -->
+   <jdbc:embedded-database id="dataSource" >
+   		<jdbc:script location="classpath:schema.sql"/>
+        <jdbc:script location="classpath:test-data.sql"/>
+    </jdbc:embedded-database>
+        
+
+
+ 
+<bean id="personDao" class="edu.ku.it.si.springjdbcexamples.dao.PersonDaoImplDB">
+
+	<property name="dataSource" ref="dataSource" />
+
+</bean>
+
+<bean id="personService" class="edu.ku.it.si.springjdbcexamples.service.PersonServiceImpl">
+
+	<property name="personDao" ref="personDao" />
+
+</bean>
+
+
+
+</beans>
+
+
