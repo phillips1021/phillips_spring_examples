@@ -41,7 +41,7 @@ public final class App {
 		 */
 		RestTemplate restTemplate = (RestTemplate) ctx.getBean("restTemplate");
 		
-		String url = "http://localhost:8080/springwebservice/controller/{username}";
+		String url = "http://localhost:8080/springwebservice/person/username/{username}";
 		
 		/*
 		 * url is the URL for the REST web service
