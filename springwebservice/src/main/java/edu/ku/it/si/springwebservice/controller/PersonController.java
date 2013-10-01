@@ -1,5 +1,6 @@
 package edu.ku.it.si.springwebservice.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +13,18 @@ import edu.ku.it.si.springwebservice.service.PersonService;
 
 /**
  * Controller class that handles requests for Person data.
+ * For example to get a Person object using a username
+ * value of bphillips use this
+ * URL:  http://domainname:port/person/username/bphillips
  * 
  * @author bphillips
  * 
  */
 @Controller
-@RequestMapping("/controller")
+@RequestMapping("/person")
 public class PersonController {
+	
+	private static final Logger LOGGER = Logger.getLogger( PersonController.class.getName() );
 
 	@Autowired
 	private PersonService personService;
@@ -29,9 +35,11 @@ public class PersonController {
 	 * @param username
 	 * @return JSON formatted Person object
 	 */
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET, headers = "Accept=application/json", produces = { "application/json" })
+	@RequestMapping(value = "/username/{username}", method = RequestMethod.GET,  produces = { "application/json" })
 	@ResponseBody
 	public Person getPerson(@PathVariable String username) {
+		
+		LOGGER.info("Get Person object for username: " + username);
 
 		return personService.getPerson(username);
 
