@@ -10,7 +10,7 @@ in the project's root folder.
 Then copy from the target folder springwebservice.war to your Tomcat's webapps folder
 
 To test that everything is working go to this URL in your web browser:
-  http://localhost:8080/springwebservice/controller/{"username":"bphillips"}
+  http://localhost:8080/springwebservice/person/username/bphillips
   
-For an exmaple of using Spring to create a web service client application see 
+For an example of using Spring to create a web service client application see 
 project springwebserviceclient.
