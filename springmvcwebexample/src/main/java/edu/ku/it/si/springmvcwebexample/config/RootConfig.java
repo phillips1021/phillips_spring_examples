@@ -10,7 +10,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages={"edu.ku.it.si.springmvcwebexample"},
     excludeFilters={
         @Filter(type=FilterType.ANNOTATION, value=EnableWebMvc.class)
-    })		
+    })	
+/**
+ * Provide basic configuration for Spring MVC Web
+ * application.
+ * @author bphillips
+ *
+ */
 public class RootConfig {
 
 }
