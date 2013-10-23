@@ -23,18 +23,34 @@ public class Person {
 	
 	private String firstName;
 
+        /**
+         * Get lastName.
+         * @return lastName
+         */
 	public String getLastName() {
 		return lastName;
 	}
 
+        /**
+         * Set lastName to provided value.
+         * @param lastName 
+         */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+        /**
+         * Get firstName.
+         * @return firstName
+         */
 	public String getFirstName() {
 		return firstName;
 	}
 
+        /**
+         * Set firstName to provided value.
+         * @param firstName 
+         */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}

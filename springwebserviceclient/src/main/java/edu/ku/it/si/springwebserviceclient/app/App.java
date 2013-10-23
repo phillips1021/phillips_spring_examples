@@ -18,8 +18,12 @@ public final class App {
 
 
   
-  private ApplicationContext ctx = new ClassPathXmlApplicationContext( "applicationContext.xml" );
+  private final ApplicationContext ctx = new ClassPathXmlApplicationContext( "applicationContext.xml" );
 
+    /**
+     * Create and run this application.
+     * @param args 
+     */
     public static void main( String[] args )
     {
         
