@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("edu.ku.it.si.springmvcwebexample.web")
+@ComponentScan("edu.ku.it.si.springmvcwebexample")
 /**
  * Enable Spring MVC Web and configure where the 
  * view pages should be found for this web application.
