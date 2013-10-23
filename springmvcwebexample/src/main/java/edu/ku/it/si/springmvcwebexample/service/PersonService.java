@@ -19,5 +19,15 @@ public interface PersonService {
 	 * @return collection of Person objects
 	 */
 	List<Person> getPeople() ;
+	
+	
+	/**
+	 * Get collection of Person objects
+	 * where last name matches provided
+	 * value.
+	 * @param lastName
+	 * @return collection of Person objects
+	 */
+	List<Person>getPeople(String lastName);
 
 }

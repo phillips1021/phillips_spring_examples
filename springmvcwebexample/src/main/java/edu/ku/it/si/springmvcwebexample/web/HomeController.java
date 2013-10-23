@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,16 +19,26 @@ import edu.ku.it.si.springmvcwebexample.service.PersonService;
  * @author bphillips
  *
  */
-@RequestMapping(value="/")
 public class HomeController {
 	
 	
 	private PersonService personService;
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	  public String home(Model model) {
 		
 		List<Person> people = personService.getPeople();
+		
+		model.addAttribute("people", people);
+		
+	    return "home";
+	    
+	  }
+	
+	@RequestMapping(value="/{lastName}", method=RequestMethod.GET)
+	  public String home(@PathVariable("lastName") String lastName, Model model) {
+		
+		List<Person> people = personService.getPeople(lastName);
 		
 		model.addAttribute("people", people);
 		

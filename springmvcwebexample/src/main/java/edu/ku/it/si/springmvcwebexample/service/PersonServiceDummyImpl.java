@@ -40,4 +40,20 @@ public class PersonServiceDummyImpl implements PersonService {
 		
 	}
 
+	@Override
+	public List<Person> getPeople(String lastName) {
+		
+		Person p1 = new Person();
+		p1.setFirstName("Bruce");
+		p1.setLastName("Phillips");
+
+		List<Person> people = new ArrayList<Person>();
+		
+		people.add(p1);
+
+		
+		return people;
+		
+	}
+
 }
