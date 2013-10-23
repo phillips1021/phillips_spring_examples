@@ -10,7 +10,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import edu.ku.it.si.springwebservice.model.Person;
 
-
+/**
+ * Unit tests for PersonService.
+ * @author bphillips
+ */
 @ContextConfiguration(locations = { "classpath:applicationContext_Test.xml" }) 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class PersonServiceTest {
@@ -18,7 +21,9 @@ public class PersonServiceTest {
 	@Autowired
 	private PersonService personService;
 
-
+        /**
+         * Test getPerson method.
+         */
 	@Test
 	public void testGetPerson() {
 		
