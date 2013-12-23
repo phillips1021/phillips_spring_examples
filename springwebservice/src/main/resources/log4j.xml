@@ -19,6 +19,10 @@
   <logger name="org.springframework.web" >
   	<level value="DEBUG" />
   </logger>
+  
+  <logger name="org.springframework.core">
+    <level value="WARN" />
+  </logger>
 
    <!-- for all other loggers log only info and above log messages -->
      <root>
