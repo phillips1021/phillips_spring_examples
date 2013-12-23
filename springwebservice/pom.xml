@@ -9,6 +9,18 @@
 
 	<name>springwebservice</name>
 
+      <developers>
+        <developer>
+            <id>brucephillips</id>
+            <name>Bruce Phillips</name>
+            <email>bphillips@ku.edu</email>
+            <organization>IT Department, University of Kansas</organization>
+            <organizationUrl>http://www.technology.ku.edu/</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
 
 	<properties>
 		<jackson-mapper-asl.version>1.9.9</jackson-mapper-asl.version>
