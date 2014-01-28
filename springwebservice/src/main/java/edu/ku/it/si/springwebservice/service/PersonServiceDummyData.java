@@ -22,10 +22,24 @@ public class PersonServiceDummyData implements PersonService {
 		Person person = new Person();
 		person.setFirstName("Bruce");
 		person.setLastName("Phillips");
+                person.setUserName("bphillips");
 		
 		return person;
 		
 		
 	}
+
+    @Override
+    public Person createPerson(String firstName, String lastName, String userName) {
+        
+        
+                Person person = new Person();
+		person.setFirstName(firstName);
+		person.setLastName(lastName);
+                person.setUserName(userName);
+		
+		return person;
+        
+    }
 
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.ku.it.si.springwebservice.model.Person;
 import edu.ku.it.si.springwebservice.service.PersonService;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * Controller class that handles requests for Person data.
@@ -44,5 +46,15 @@ public class PersonController {
 		return personService.getPerson(username);
 
 	}
+        
+        
+        @RequestMapping(value = "/username/create", method = RequestMethod.POST,  produces = { "application/json" })
+	@ResponseBody
+        public Person createPerson(@RequestBody Person person) {
 
+            LOGGER.info("Create Person object with this data: " + person);
+            
+            return personService.createPerson( person.getFirstName(), person.getLastName(), person.getUserName());
+            
+        }
 }

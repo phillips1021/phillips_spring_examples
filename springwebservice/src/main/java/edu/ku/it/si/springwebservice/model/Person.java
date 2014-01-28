@@ -22,6 +22,16 @@ public class Person {
     private String lastName;
 
     private String firstName;
+    
+    private String userName ;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
 	/**
 	 * Get lastName.
@@ -59,10 +69,11 @@ public class Person {
 		this.firstName = firstName;
 	}
 
-	@Override
-	public String toString() {
-		return "Person [lastName=" + lastName + ", firstName=" + firstName
-				+ "]";
-	}
+    @Override
+    public String toString() {
+        return "Person{" + "lastName=" + lastName + ", firstName=" + firstName + ", userName=" + userName + '}';
+    }
+
+	
 
 }

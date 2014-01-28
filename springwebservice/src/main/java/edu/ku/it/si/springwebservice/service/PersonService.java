@@ -18,4 +18,6 @@ public interface PersonService {
 	 */
 	Person getPerson(String userName) ;
 
+    public Person createPerson(String firstName, String lastName, String userName);
+
 }
