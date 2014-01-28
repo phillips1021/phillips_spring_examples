@@ -17,4 +17,5 @@ To build and run the application follow these steps:
    a. java -cp SpringWebServiceClient-jar-with-dependencies.jar edu.ku.it.si.springwebserviceclient.app.App 
    
    In the terminal window you will see many log messages (logging is set to the debug level).
-   The last log message you see should be: Person returned is Person [lastName=Phillips, firstName=Bruce]
+   
+   The application gets a Person using the web service and creates a Person using the web service.
