@@ -4,6 +4,10 @@ http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/
 
 This simple example returns a JSON formatted Person object.
 
+It allows provides a REST end point to create a Person object.
+
+To run the unit/integration tests do mvn -e clean test
+
 To create the .war file run the following Maven command:  mvn -e clean package
 in the project's root folder.
 
