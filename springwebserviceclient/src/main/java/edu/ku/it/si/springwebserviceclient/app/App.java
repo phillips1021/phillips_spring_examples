@@ -55,6 +55,18 @@ public final class App {
 		Person person = restTemplate.getForObject(url, Person.class, "bphillips");
 		
 		LOGGER.info("Person returned is " + person);
+                
+                Person newPerson = new Person() ;
+                
+                newPerson.setFirstName("Tom");
+                newPerson.setLastName("Jackson");
+                newPerson.setUserName("tjackson");
+                
+                String createURL = "http://localhost:8080/springwebservice/person/username/create";
+                
+                Person createdPerson = restTemplate.postForObject(createURL, newPerson, Person.class) ;
+                
+                LOGGER.info("Person created is " + createdPerson);
 		
 	}
 	
