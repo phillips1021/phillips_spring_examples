@@ -29,7 +29,7 @@ public class PersonServiceDummyImpl implements PersonService {
 		p2.setLastName("Doe");
 		
 		
-		List<Person> people = new ArrayList<Person>();
+		List<Person> people = new ArrayList<>();
 		
 		people.add(p1);
 		people.add(p2);
@@ -47,7 +47,7 @@ public class PersonServiceDummyImpl implements PersonService {
 		p1.setFirstName("Bruce");
 		p1.setLastName("Phillips");
 
-		List<Person> people = new ArrayList<Person>();
+		List<Person> people = new ArrayList<>();
 		
 		people.add(p1);
 
