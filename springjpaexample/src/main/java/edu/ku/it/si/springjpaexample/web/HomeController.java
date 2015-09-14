@@ -35,17 +35,6 @@ public class HomeController {
 	    return "home";
 	    
 	  }
-	
-	@RequestMapping(value="/{emplid}", method=RequestMethod.GET)
-	  public String home(@PathVariable("emplid") Long emplid, Model model) {
-		
-		Person people = personService.findbyEmplid(emplid) ;
-		
-		model.addAttribute("people", people);
-		
-	    return "home";
-	    
-	  }
 
 	/**
 	 * @param personService the personService to set

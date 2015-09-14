@@ -17,8 +17,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-
+@WebAppConfiguration
 public class HomeControllerTest {
 
 	
